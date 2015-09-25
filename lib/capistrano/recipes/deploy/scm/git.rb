@@ -238,10 +238,6 @@ module Capistrano
           end
           return newrev if newrev =~ /^[0-9a-f]{40}$/
 
-          # If sha is not found on remote, try expanding from local repository
-          command = scm('rev-parse --revs-only', origin + '/' + revision)
-          newrev = yield(command).to_s.strip
-
           # fallback for expected legacy default functionality
           unless newrev =~ /^[0-9a-f]{40}$/
             command = scm('rev-parse --revs-only', revision)
